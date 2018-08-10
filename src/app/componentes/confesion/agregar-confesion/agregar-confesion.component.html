@@ -1,0 +1,18 @@
+<form [formGroup]="confesionForm" (ngSubmit) = "addConfesion()">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Título</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Título" formControlName="titulo">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Escribe tu confesión</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="cuerpo"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Categoria</label>
+    <select class="form-control" id="exampleFormControlSelect1" formControlName="categoria">
+      <option>Amor</option>
+      <option>Sexo</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2 " [disabled]='!confesionForm.valid'>Envíar</button>
+</form>

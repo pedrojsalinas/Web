@@ -1,0 +1,21 @@
+<div class="card mt-3" >
+  <h5 class="card-header text-center">{{confesion?.titulo | titlecase}}</h5>
+  <div class="card-body">
+    <p class="card-text" >{{confesion?.cuerpo}}</p>
+  </div>
+</div>
+
+<div class="card mt-3" *ngFor="let comentario of comentarios | async" >
+  <div class="card-body">
+    <p class="card-text text-justify" >{{comentario.cuerpo }}</p><br>
+    <p class="float-right ">{{comentario.fecha.toDate() | date:'medium'  }}</p>
+  </div>
+</div>
+
+<form [formGroup]="comentarioForm" (ngSubmit) = "addComentario()">
+  <div class="form-group mt-3">
+    <label for="exampleFormControlTextarea1">Escribe un comentario</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="cuerpo"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2 " [disabled]='!comentarioForm.valid'>Envíar</button>
+</form>
