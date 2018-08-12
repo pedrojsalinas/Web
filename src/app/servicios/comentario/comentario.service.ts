@@ -19,9 +19,8 @@ export class ComentarioService {
   }
 
   getComentarios(uid){
-    console.log('uid: ',uid)
     this.comentarios = this.db.collection<Comentario>('comentarios/', ref=>{
-      return ref.where('confesion_uid','==',uid) 
+      return ref.where('confesion_uid','==',uid)
     }).snapshotChanges().pipe(map(comentarios=>{
       return comentarios.map(a=>{
         const comentario = a.payload.doc.data();

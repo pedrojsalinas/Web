@@ -17,5 +17,9 @@
     <label for="exampleFormControlTextarea1">Escribe un comentario</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="cuerpo"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary mb-2 " [disabled]='!comentarioForm.valid'>Envíar</button>
+  <button type="submit" class="btn btn-primary mb-2 " [disabled]='!comentarioForm.valid || !isLogin'>Envíar</button>
 </form>
+<div *ngIf="!isLogin">
+  <p ><span>Para agregar un comentario debes estar loguegado, ingresa a tu cuenta o logueate de forma anonima.</span></p>
+  <button type="button" (click)="login()" class="btn btn-primary mb-2 " name="button">Log In</button>
+</div>

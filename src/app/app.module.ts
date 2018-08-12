@@ -19,7 +19,9 @@ import { AgregarConfesionComponent } from './componentes/confesion/agregar-confe
 import { HomeComponent } from './componentes/home/home.component';
 import { PageNotFoundComponent } from './componentes/page-not-found/page-not-found.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LoginDialogComponent } from './componentes/dialogs/login-dialog/login-dialog.component';
+import {MatSnackBarModule,MatButtonModule,MatIconModule,MatDialogModule,MatFormFieldModule,MatInputModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import { DetalleComponent } from './componentes/detalle/detalle.component';
     HomeComponent,
     PageNotFoundComponent,
     DetalleComponent,
+LoginDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +41,17 @@ import { DetalleComponent } from './componentes/detalle/detalle.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [AuthServiceService,ConfesionService,ComentarioService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginDialogComponent]
 })
 export class AppModule { }

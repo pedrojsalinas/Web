@@ -1,0 +1,19 @@
+<h2 mat-dialog-title class="text-center">Log In</h2>
+<mat-dialog-content >
+  <form [formGroup]="loginForm" (ngSubmit) = "login()">
+    <mat-form-field appearance="outline">
+      <mat-label>Correo</mat-label>
+      <input matInput placeholder="Correo" formControlName="correo">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'" formControlName="clave">
+    </mat-form-field>
+  </form>
+  <div class="button-row mx-auto">
+    <button mat-flat-button color="primary" [disabled]='!loginForm.valid' (click)="login()" >Ingresar</button>
+    <button mat-flat-button (click)="close()" color="warn">Cancelar</button>
+  </div>
+  <mat-error>{{mensaje}}</mat-error>
+  <button class="mx-auto mt-2" (click)="loginAnonimo()" mat-stroked-button>Anònimo</button>
+</mat-dialog-content>

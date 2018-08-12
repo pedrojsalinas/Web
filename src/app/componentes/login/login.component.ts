@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../servicios/auth/auth-service.service';
 import { FormBuilder, FormGroup,FormControl,Validators } from '@angular/forms';
 import {Router } from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-login',

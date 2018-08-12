@@ -8,6 +8,9 @@ import { AuthServiceService } from '../../servicios/auth/auth-service.service';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import {Observable} from 'rxjs';
 import { FormBuilder, FormGroup,FormControl,Validators } from '@angular/forms';
+import {MatDialog, MatDialogConfig,MatSnackBar} from '@angular/material';
+import { LoginDialogComponent } from './../../componentes/dialogs/login-dialog/login-dialog.component';
+
 
 
 @Component({
@@ -18,6 +21,8 @@ import { FormBuilder, FormGroup,FormControl,Validators } from '@angular/forms';
 export class DetalleComponent implements OnInit {
   private  uidConfesion;
   private  uid;
+  public isLogin: boolean;
+
   comentarioForm: FormGroup;
   confesion: Confesion;
   comentario:Comentario={
@@ -34,9 +39,12 @@ export class DetalleComponent implements OnInit {
     private confesionService: ConfesionService,
     private comentarioService: ComentarioService,
     private authService: AuthServiceService,
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     private fb: FormBuilder) {
       this.uid = this.route.snapshot.paramMap.get('uid');
-      this.comentarios=comentarioService.getComentarios(this.uid)
+      this.comentarios=comentarioService.getComentarios(this.uid);
+      this.onComprobarUserLogin();
     }
   ngOnInit() {
     this.confesionService.getConfesion(this.uid).subscribe(data=>{
@@ -55,5 +63,30 @@ export class DetalleComponent implements OnInit {
        console.log('Comentario agregado')
        })
     });
+  }
+  openDialog() {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      const dialogRef = this.dialog.open(LoginDialogComponent, dialogConfig);
+
+      dialogRef.afterClosed().subscribe(()=>{
+
+        let snackBarRef = this.snackBar.open('Usuario Logueado')
+      }
+       // data => console.log("Dialog output:", data)
+      );
+  }
+  onComprobarUserLogin(){
+  this.authService.getAuth().subscribe( auth => {
+    if(auth){
+      this.isLogin=true;
+    }else{
+      this.isLogin= false;
+      }
+    })
+  }
+  login(){
+    this.openDialog();
   }
 }

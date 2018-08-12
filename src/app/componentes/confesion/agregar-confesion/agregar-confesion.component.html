@@ -14,5 +14,9 @@
       <option>Sexo</option>
     </select>
   </div>
-  <button type="submit" class="btn btn-primary mb-2 " [disabled]='!confesionForm.valid'>Envíar</button>
+  <button type="submit" class="btn btn-primary mb-2 " [disabled]='!confesionForm.valid || !isLogin'>Envíar</button>
+  <div *ngIf="!isLogin">
+    <p ><span>Para agregar una confesiòn debes estar loguegado, ingresa a tu cuenta o logueate de forma anonima.</span></p>
+    <button type="button" (click)="login()" class="btn btn-primary mb-2 " name="button">Log In</button>
+  </div>
 </form>

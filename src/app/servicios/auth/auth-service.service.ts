@@ -24,6 +24,12 @@ export class AuthServiceService {
         console.log('Something went wrong:',err.message);
       });
   }
+  loginCorreoDialog(data){
+    return this.afAuth.auth.signInWithEmailAndPassword(data.correo,data.clave);
+  }
+  loginAnonimoDialog(){
+    return this.afAuth.auth.signInAnonymously();
+  }
   getUser(){
     let usuario = this.afAuth.auth.onAuthStateChanged;
   }
